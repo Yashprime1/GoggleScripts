@@ -10,6 +10,28 @@
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/a/macros/clevertap.com/s/AKfycbw7vkYoKXunDabLu-ZMjPzFqq4YXDZ_nxUSyFC9hdOW/dev"></iframe>
+    <iframe id="myframe" src="https://script.google.com/a/macros/clevertap.com/s/AKfycbw7vkYoKXunDabLu-ZMjPzFqq4YXDZ_nxUSyFC9hdOW/dev"></iframe>
+    <script>
+        // Parent window code
+        function handleGoogleAuth() {
+            const popup = window.open(
+                'https://script.google.com/a/macros/clevertap.com/s/AKfycbw7vkYoKXunDabLu-ZMjPzFqq4YXDZ_nxUSyFC9hdOW/dev',
+                'google-auth',
+                'width=500,height=600,scrollbars=yes'
+            );
+            
+            // Listen for authentication completion
+            window.addEventListener('message', function(event) {
+                if (event.origin !== 'https://script.google.com') return;
+                
+                if (event.data.type === 'AUTH_SUCCESS') {
+                    popup.close();
+                    // Reload your iframe or handle success
+                    document.getElementById('myframe').src = 'https://script.google.com/a/macros/clevertap.com/s/AKfycbw7vkYoKXunDabLu-ZMjPzFqq4YXDZ_nxUSyFC9hdOW/dev';
+                }
+            });
+        }
+
+    </script>
 </body>
 </html>
